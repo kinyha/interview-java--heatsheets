@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интерактивная шпаргалка по TECHNOLOGY_NAME для подготовки к техническим интервью">
+    <meta name="keywords" content="TECHNOLOGY_NAME, interview, собеседование, шпаргалка, программирование">
+    <meta name="author" content="Interview Cheatsheets">
+    
+    <title>EMOJI TECHNOLOGY_NAME Interview Шпаргалка</title>
+    
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #81C784;
+            --accent-color: #FFB74D;
+            --error-color: #F44336;
+            --warning-color: #FF9800;
+            --info-color: #2196F3;
+            
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --bg-hover: #4d4d4d;
+            
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            
+            --border-color: #333;
+            --border-hover: #555;
+            
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        details {
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        details:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow);
+        }
+        
+        details[open] {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        summary:hover {
+            background: var(--bg-hover);
+        }
+        
+        summary::marker {
+            display: none;
+        }
+        
+        summary::before {
+            content: '▶';
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+        
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        .emoji {
+            margin-right: 12px;
+            font-size: 1.3em;
+        }
+        
+        .content {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+        
+        .nested {
+            margin: 10px 0;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .nested summary {
+            padding: 12px 15px;
+            font-weight: 500;
+            background: var(--bg-secondary);
+        }
+        
+        .nested .content {
+            padding: 15px;
+            background: var(--bg-primary);
+        }
+        
+        .definition {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .code {
+            background: var(--bg-tertiary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+        }
+        
+        .code-block {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            color: var(--accent-color);
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .highlight {
+            background: var(--info-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .warning {
+            background: var(--warning-color);
+            color: var(--bg-primary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .error {
+            background: var(--error-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .performance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .performance-table th,
+        .performance-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .performance-table th {
+            background: var(--bg-hover);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin: 2px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-top: 3px solid var(--primary-color);
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            summary {
+                padding: 12px 15px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        details[open] .content {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>EMOJI TECHNOLOGY_NAME Interview Шпаргалка</h1>
+        <p>Быстрая подготовка к техническому собеседованию</p>
+    </div>
+    
+    <div class="controls">
+        <button class="btn btn-primary" onclick="expandAll()">📂 Развернуть все</button>
+        <button class="btn" onclick="collapseAll()">📁 Свернуть все</button>
+        <button class="btn" onclick="printPage()">🖨️ Печать</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Тема</button>
+    </div>
+    
+    <!-- ========== РАЗДЕЛ 1: ЗАМЕНИ НА СВОИ ТЕМЫ ========== -->
+    <details>
+        <summary><span class="emoji">🏗️</span>Основные концепции <span class="tag">Core</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>Концепция 1</summary>
+                <div class="content">
+                    <div class="definition">Определение:</div>
+                    Краткое описание концепции...<br><br>
+                    
+                    <div class="definition">Ключевые особенности:</div>
+                    <ul>
+                        <li>Особенность 1</li>
+                        <li>Особенность 2</li>
+                        <li>Особенность 3</li>
+                    </ul>
+                    
+                    <div class="definition">Пример кода:</div>
+                    <div class="code-block">// Пример кода здесь
+function example() {
+    return "Hello, World!";
+}</div>
+                    
+                    <div class="definition">Важно помнить:</div>
+                    <ul>
+                        <li><span class="highlight">Плюс:</span> Преимущество</li>
+                        <li><span class="warning">Внимание:</span> На что обратить внимание</li>
+                        <li><span class="error">Минус:</span> Недостаток или подводный камень</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Концепция 2</summary>
+                <div class="content">
+                    <!-- Аналогично заполни содержимое -->
+                    <div class="definition">Определение:</div>
+                    Описание второй концепции...
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <!-- ========== РАЗДЕЛ 2: СРАВНЕНИЯ И ТАБЛИЦЫ ========== -->
+    <details>
+        <summary><span class="emoji">⚖️</span>Сравнения <span class="tag">Comparison</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>Технология A vs Технология B</summary>
+                <div class="content">
+                    <table class="performance-table">
+                        <tr>
+                            <th>Критерий</th>
+                            <th>Технология A</th>
+                            <th>Технология B</th>
+                        </tr>
+                        <tr>
+                            <td>Производительность</td>
+                            <td><span class="highlight">Высокая</span></td>
+                            <td><span class="warning">Средняя</span></td>
+                        </tr>
+                        <tr>
+                            <td>Сложность</td>
+                            <td><span class="error">Сложная</span></td>
+                            <td><span class="highlight">Простая</span></td>
+                        </tr>
+                        <tr>
+                            <td>Использование</td>
+                            <td>Для больших проектов</td>
+                            <td>Для простых задач</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="definition">Когда использовать:</div>
+                    <ul>
+                        <li><span class="highlight">Технология A:</span> Когда нужна высокая производительность</li>
+                        <li><span class="highlight">Технология B:</span> Когда важна простота разработки</li>
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <!-- ========== РАЗДЕЛ 3: ЛУЧШИЕ ПРАКТИКИ ========== -->
+    <details>
+        <summary><span class="emoji">✅</span>Лучшие практики <span class="tag">Best Practices</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>Общие рекомендации</summary>
+                <div class="content">
+                    <div class="definition">Do (Делай):</div>
+                    <ul>
+                        <li><span class="highlight">✓</span> Используй осмысленные названия</li>
+                        <li><span class="highlight">✓</span> Пиши тесты</li>
+                        <li><span class="highlight">✓</span> Документируй код</li>
+                    </ul>
+                    
+                    <div class="definition">Don't (Не делай):</div>
+                    <ul>
+                        <li><span class="error">✗</span> Не игнорируй ошибки</li>
+                        <li><span class="error">✗</span> Не копируй код без понимания</li>
+                        <li><span class="error">✗</span> Не забывай про безопасность</li>
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <!-- ========== РАЗДЕЛ 4: ЧАСТЫЕ ВОПРОСЫ НА ИНТЕРВЬЮ ========== -->
+    <details>
+        <summary><span class="emoji">❓</span>Частые вопросы на интервью <span class="tag">Interview</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>Вопрос: Что такое [основная концепция]?</summary>
+                <div class="content">
+                    <div class="definition">Краткий ответ:</div>
+                    Основная концепция - это...<br><br>
+                    
+                    <div class="definition">Развернутый ответ:</div>
+                    Более детальное объяснение с примерами...
+                    
+                    <div class="code-block">// Пример для демонстрации
+console.log("Пример кода для собеседования");</div>
+                    
+                    <div class="definition">Возможные дополнительные вопросы:</div>
+                    <ul>
+                        <li>Каковы преимущества этого подхода?</li>
+                        <li>Когда лучше не использовать эту технологию?</li>
+                        <li>Как бы вы объяснили это junior разработчику?</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Вопрос: В чем разница между X и Y?</summary>
+                <div class="content">
+                    <div class="definition">Основные различия:</div>
+                    <ul>
+                        <li><strong>X:</strong> Характеристика X</li>
+                        <li><strong>Y:</strong> Характеристика Y</li>
+                    </ul>
+                    
+                    <div class="definition">Практический пример:</div>
+                    <div class="code-block">// Пример использования X
+const exampleX = new X();
+
+// Пример использования Y  
+const exampleY = new Y();</div>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <div class="footer">
+        <p>
+            <strong>📚 Interview Cheatsheets</strong> | 
+            <a href="https://github.com/yourusername/interview-cheatsheets" target="_blank">GitHub Repository</a> | 
+            <a href="https://github.com/yourusername/interview-cheatsheets/issues" target="_blank">Предложить улучшение</a>
+        </p>
+        <p style="margin-top: 10px; color: var(--text-secondary);">
+            Сделано с ❤️ для сообщества разработчиков. Версия 1.0
+        </p>
+    </div>
+    
+    <script>
+        // Управление разворачиванием/сворачиванием
+        function expandAll() {
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = true;
+            });
+        }
+        
+        function collapseAll() {
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = false;
+            });
+        }
+        
+        // Печать страницы
+        function printPage() {
+            const wasOpen = [];
+            const details = document.querySelectorAll('details');
+            
+            details.forEach((detail, index) => {
+                wasOpen[index] = detail.open;
+                detail.open = true;
+            });
+            
+            window.print();
+            
+            details.forEach((detail, index) => {
+                detail.open = wasOpen[index];
+            });
+        }
+        
+        // Переключение темы (light/dark)
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.style.getPropertyValue('--bg-primary') !== '#ffffff';
+            
+            if (isDark) {
+                // Светлая тема
+                root.style.setProperty('--bg-primary', '#ffffff');
+                root.style.setProperty('--bg-secondary', '#f5f5f5');
+                root.style.setProperty('--bg-tertiary', '#e0e0e0');
+                root.style.setProperty('--bg-hover', '#d0d0d0');
+                root.style.setProperty('--text-primary', '#2c2c2c');
+                root.style.setProperty('--text-secondary', '#4a4a4a');
+                root.style.setProperty('--border-color', '#cccccc');
+                root.style.setProperty('--border-hover', '#999999');
+            } else {
+                // Темная тема (по умолчанию)
+                root.style.setProperty('--bg-primary', '#1a1a1a');
+                root.style.setProperty('--bg-secondary', '#2d2d2d');
+                root.style.setProperty('--bg-tertiary', '#3d3d3d');
+                root.style.setProperty('--bg-hover', '#4d4d4d');
+                root.style.setProperty('--text-primary', '#e0e0e0');
+                root.style.setProperty('--text-secondary', '#b0b0b0');
+                root.style.setProperty('--border-color', '#333');
+                root.style.setProperty('--border-hover', '#555');
+            }
+        }
+        
+        // Горячие клавиши
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey) {
+                switch(e.key) {
+                    case 'o':
+                        e.preventDefault();
+                        expandAll();
+                        break;
+                    case 'm':
+                        e.preventDefault();
+                        collapseAll();
+                        break;
+                }
+            }
+        });
+        
+        // Сохранение состояния разделов
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('details').forEach((detail, index) => {
+                state[index] = detail.open;
+            });
+            localStorage.setItem('TECHNOLOGY_NAME-cheatsheet-state', JSON.stringify(state));
+        }
+        
+        function loadState() {
+            const state = localStorage.getItem('TECHNOLOGY_NAME-cheatsheet-state');
+            if (state) {
+                const parsed = JSON.parse(state);
+                document.querySelectorAll('details').forEach((detail, index) => {
+                    if (parsed[index] !== undefined) {
+                        detail.open = parsed[index];
+                    }
+                });
+            }
+        }
+        
+        document.addEventListener('toggle', saveState);
+        document.addEventListener('DOMContentLoaded', loadState);
+        
+        // Статистика
+        let clickCount = parseInt(localStorage.getItem('TECHNOLOGY_NAME-cheatsheet-clicks') || '0');
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'SUMMARY') {
+                clickCount++;
+                localStorage.setItem('TECHNOLOGY_NAME-cheatsheet-clicks', clickCount.toString());
+            }
+        });
+        
+        console.log(`%c📊 Статистика использования шпаргалки по TECHNOLOGY_NAME: ${clickCount} кликов`, 
+                   'color: #4CAF50; font-size: 14px; font-weight: bold;');
+        console.log('%c💡 Горячие клавиши: Ctrl+O (развернуть все), Ctrl+M (свернуть все)', 
+                   'color: #2196F3; font-size: 12px;');
+    </script>
+</body>
+</html>

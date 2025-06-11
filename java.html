@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Интерактивная шпаргалка по Java для подготовки к техническим интервью">
+    <meta name="keywords" content="Java, interview, собеседование, шпаргалка, программирование">
+    <meta name="author" content="Interview Cheatsheets">
+    
+    <title>☕ Java Interview Шпаргалка</title>
+    
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #81C784;
+            --accent-color: #FFB74D;
+            --error-color: #F44336;
+            --warning-color: #FF9800;
+            --info-color: #2196F3;
+            
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #3d3d3d;
+            --bg-hover: #4d4d4d;
+            
+            --text-primary: #e0e0e0;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            
+            --border-color: #333;
+            --border-hover: #555;
+            
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+        
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-1px);
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        details {
+            margin: 15px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        details:hover {
+            border-color: var(--border-hover);
+            box-shadow: var(--shadow);
+        }
+        
+        details[open] {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            background: var(--bg-tertiary);
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        summary:hover {
+            background: var(--bg-hover);
+        }
+        
+        summary::marker {
+            display: none;
+        }
+        
+        summary::before {
+            content: '▶';
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+            color: var(--primary-color);
+        }
+        
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        
+        .emoji {
+            margin-right: 12px;
+            font-size: 1.3em;
+        }
+        
+        .content {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+        
+        .nested {
+            margin: 10px 0;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .nested summary {
+            padding: 12px 15px;
+            font-weight: 500;
+            background: var(--bg-secondary);
+        }
+        
+        .nested .content {
+            padding: 15px;
+            background: var(--bg-primary);
+        }
+        
+        .definition {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .code {
+            background: var(--bg-tertiary);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+        }
+        
+        .code-block {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', Consolas, Monaco, monospace;
+            color: var(--accent-color);
+            margin: 10px 0;
+            overflow-x: auto;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .highlight {
+            background: var(--info-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .warning {
+            background: var(--warning-color);
+            color: var(--bg-primary);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .error {
+            background: var(--error-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .performance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: var(--bg-tertiary);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .performance-table th,
+        .performance-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .performance-table th {
+            background: var(--bg-hover);
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin: 2px;
+            font-weight: 500;
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-top: 3px solid var(--primary-color);
+        }
+        
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            summary {
+                padding: 12px 15px;
+            }
+            
+            .content {
+                padding: 15px;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        details[open] .content {
+            animation: fadeIn 0.3s ease;
+        }
+        
+        /* Скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>☕ Java Interview Шпаргалка</h1>
+        <p>Быстрая подготовка к техническому собеседованию</p>
+    </div>
+    
+    <div class="controls">
+        <button class="btn btn-primary" onclick="expandAll()">📂 Развернуть все</button>
+        <button class="btn" onclick="collapseAll()">📁 Свернуть все</button>
+        <button class="btn" onclick="printPage()">🖨️ Печать</button>
+        <button class="btn" onclick="toggleTheme()">🌓 Тема</button>
+    </div>
+    
+    <details>
+        <summary><span class="emoji">🧵</span>Многопоточность <span class="tag">Concurrency</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>Deadlock (Взаимная блокировка)</summary>
+                <div class="content">
+                    <div class="definition">Определение:</div>
+                    Ситуация, при которой несколько потоков находятся в состоянии ожидания ресурсов, занятых друг другом, и ни один из них не может продолжать выполнение.<br><br>
+                    
+                    <div class="definition">Условия возникновения:</div>
+                    <ul>
+                        <li><strong>Взаимное исключение</strong> - ресурс может использоваться только одним потоком</li>
+                        <li><strong>Удержание и ожидание</strong> - поток удерживает ресурс и ждет другой</li>
+                        <li><strong>Невытесняемость</strong> - ресурс нельзя принудительно отобрать</li>
+                        <li><strong>Циклическое ожидание</strong> - цепочка ожидающих потоков</li>
+                    </ul>
+                    
+                    <div class="definition">Решения:</div>
+                    <ul>
+                        <li>Порядок захвата locks (всегда в одинаковой последовательности)</li>
+                        <li>Использование <span class="code">tryLock(timeout)</span></li>
+                        <li>Избегание вложенных блокировок</li>
+                        <li>Использование <span class="code">java.util.concurrent</span> классов</li>
+                    </ul>
+                    
+                    <div class="code-block">// Пример deadlock
+Lock lock1 = new ReentrantLock();
+Lock lock2 = new ReentrantLock();
+
+// Thread 1
+lock1.lock();
+lock2.lock(); // Ждет Thread 2
+
+// Thread 2  
+lock2.lock();
+lock1.lock(); // Ждет Thread 1</div>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Livelock (Живая блокировка)</summary>
+                <div class="content">
+                    <div class="definition">Определение:</div>
+                    Потоки остаются активными, но не могут прогрессировать, постоянно реагируя друг на друга.<br><br>
+                    
+                    <div class="definition">Отличие от Deadlock:</div>
+                    <ul>
+                        <li><span class="error">Deadlock:</span> Потоки заблокированы и ждут</li>
+                        <li><span class="warning">Livelock:</span> Потоки активны, но работа не выполняется</li>
+                    </ul>
+                    
+                    <div class="definition">Решение:</div>
+                    Добавление случайности в алгоритмы разрешения конфликтов
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Synchronized</summary>
+                <div class="content">
+                    <div class="definition">Назначение:</div>
+                    Обеспечивает синхронизацию доступа к критическим секциям кода.<br><br>
+                    
+                    <div class="definition">Типы синхронизации:</div>
+                    <table class="performance-table">
+                        <tr>
+                            <th>Тип</th>
+                            <th>Синтаксис</th>
+                            <th>Что блокируется</th>
+                        </tr>
+                        <tr>
+                            <td>Метод экземпляра</td>
+                            <td><span class="code">synchronized void method()</span></td>
+                            <td>Объект (this)</td>
+                        </tr>
+                        <tr>
+                            <td>Статический метод</td>
+                            <td><span class="code">synchronized static void method()</span></td>
+                            <td>Класс (Class объект)</td>
+                        </tr>
+                        <tr>
+                            <td>Блок кода</td>
+                            <td><span class="code">synchronized(object) { }</span></td>
+                            <td>Указанный объект</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="definition">Важно помнить:</div>
+                    <ul>
+                        <li><span class="highlight">Reentrant</span> - поток может повторно захватить тот же lock</li>
+                        <li><span class="warning">Performance</span> - может снижать производительность</li>
+                        <li><span class="error">Deadlock risk</span> - при неправильном использовании</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Volatile</summary>
+                <div class="content">
+                    <div class="definition">Назначение:</div>
+                    Гарантирует видимость изменений переменной между потоками.<br><br>
+                    
+                    <div class="definition">Что гарантирует:</div>
+                    <ul>
+                        <li><span class="highlight">Visibility</span> - изменения видны всем потокам</li>
+                        <li><span class="highlight">Ordering</span> - запрещает reordering операций</li>
+                    </ul>
+                    
+                    <div class="definition">Что НЕ гарантирует:</div>
+                    <ul>
+                        <li><span class="error">Атомарность</span> - операции могут быть не атомарными</li>
+                        <li><span class="error">Mutual exclusion</span> - не блокирует доступ</li>
+                    </ul>
+                    
+                    <div class="definition">Типичные случаи использования:</div>
+                    <ul>
+                        <li>Флаги состояния (<span class="code">volatile boolean running</span>)</li>
+                        <li>Double-checked locking pattern</li>
+                        <li>Публикация неизменяемых объектов</li>
+                    </ul>
+                    
+                    <div class="code-block">// Правильное использование volatile
+private volatile boolean shutdown = false;
+
+public void shutdown() {
+    shutdown = true; // Изменение видно всем потокам
+}
+
+public void doWork() {
+    while (!shutdown) { // Всегда видит актуальное значение
+        // работа
+    }
+}</div>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Monitor (Монитор)</summary>
+                <div class="content">
+                    <div class="definition">Определение:</div>
+                    Объект, который обеспечивает единовременное использование только одного потока при использовании ключевого слова <span class="code">synchronized</span>.<br><br>
+                    
+                    <div class="definition">Методы Object класса:</div>
+                    <ul>
+                        <li><span class="code">wait()</span> - освобождает lock и ждет уведомления</li>
+                        <li><span class="code">notify()</span> - будит один ожидающий поток</li>
+                        <li><span class="code">notifyAll()</span> - будит все ожидающие потоки</li>
+                    </ul>
+                    
+                    <div class="definition">Важно:</div>
+                    <ul>
+                        <li>Вызывать только внутри <span class="code">synchronized</span> блока</li>
+                        <li>Использовать в цикле while, не if</li>
+                        <li>Предпочитать <span class="code">notifyAll()</span> вместо <span class="code">notify()</span></li>
+                    </ul>
+                    
+                    <div class="code-block">// Правильное использование wait/notify
+synchronized(monitor) {
+    while (!condition) {
+        monitor.wait(); // В цикле!
+    }
+    // работа
+    monitor.notifyAll(); // Уведомляем всех
+}</div>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <details>
+        <summary><span class="emoji">💾</span>Управление памятью <span class="tag">Memory</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>Stack vs Heap</summary>
+                <div class="content">
+                    <table class="performance-table">
+                        <tr>
+                            <th>Характеристика</th>
+                            <th>Stack (Стек)</th>
+                            <th>Heap (Куча)</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Что хранит</strong></td>
+                            <td>
+                                • Примитивные типы<br>
+                                • Ссылки на объекты<br>
+                                • Локальные переменные
+                            </td>
+                            <td>
+                                • Объекты<br>
+                                • Массивы<br>
+                                • Строки<br>
+                                • Статические переменные
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Скорость доступа</strong></td>
+                            <td><span class="highlight">Очень быстрый</span></td>
+                            <td><span class="warning">Медленнее</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Управление памятью</strong></td>
+                            <td><span class="highlight">Автоматическое</span> (LIFO)</td>
+                            <td><span class="warning">Garbage Collector</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Размер</strong></td>
+                            <td><span class="error">Ограниченный</span> (-Xss)</td>
+                            <td><span class="highlight">Большой</span> (-Xmx)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Область видимости</strong></td>
+                            <td>Локальная (поток)</td>
+                            <td>Глобальная (все потоки)</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="code-block">// Пример распределения памяти
+public void method() {
+    int x = 10;              // Stack - примитив
+    String s = "hello";      // Stack - ссылка, Heap - объект "hello"
+    List<String> list = new ArrayList<>(); // Stack - ссылка, Heap - объект ArrayList
+    
+    list.add("world");       // Heap - объект "world" добавляется в список
+} // После выхода из метода: Stack очищается автоматически, Heap объекты ждут GC</div>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>String Pool (Пул строк)</summary>
+                <div class="content">
+                    <div class="definition">Определение:</div>
+                    Специальная область в Heap памяти для хранения строковых литералов с целью экономии памяти.<br><br>
+                    
+                    <div class="definition">Как работает:</div>
+                    <ul>
+                        <li>Строковые литералы автоматически помещаются в pool</li>
+                        <li>Одинаковые строки ссылаются на один объект</li>
+                        <li>Метод <span class="code">intern()</span> принудительно помещает строку в pool</li>
+                    </ul>
+                    
+                    <div class="code-block">// String Pool в действии
+String s1 = "hello";                    // В String Pool
+String s2 = "hello";                    // Ссылается на тот же объект
+String s3 = new String("hello");       // Новый объект в Heap
+String s4 = s3.intern();               // Возвращает ссылку из Pool
+
+System.out.println(s1 == s2);          // true - одинаковые ссылки
+System.out.println(s1 == s3);          // false - разные объекты  
+System.out.println(s1 == s4);          // true - intern() вернул из pool
+System.out.println(s1.equals(s3));     // true - содержимое одинаковое</div>
+                    
+                    <div class="definition">Практические советы:</div>
+                    <ul>
+                        <li><span class="highlight">Используй</span> строковые литералы вместо new String()</li>
+                        <li><span class="warning">Осторожно</span> с intern() - может привести к memory leak</li>
+                        <li><span class="highlight">Помни</span> про различие == и equals() для строк</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Garbage Collection (Сборка мусора)</summary>
+                <div class="content">
+                    <div class="definition">Назначение:</div>
+                    Автоматическое освобождение памяти от объектов, на которые нет ссылок.<br><br>
+                    
+                    <div class="definition">Поколения объектов:</div>
+                    <ul>
+                        <li><span class="highlight">Young Generation</span> - новые объекты (Eden, S0, S1)</li>
+                        <li><span class="info">Old Generation</span> - долгоживущие объекты</li>
+                        <li><span class="warning">Permanent/Metaspace</span> - метаданные классов</li>
+                    </ul>
+                    
+                    <div class="definition">Основные алгоритмы GC:</div>
+                    <table class="performance-table">
+                        <tr>
+                            <th>Алгоритм</th>
+                            <th>Характеристика</th>
+                            <th>Использование</th>
+                        </tr>
+                        <tr>
+                            <td>Serial GC</td>
+                            <td>Однопоточный</td>
+                            <td>Малые приложения</td>
+                        </tr>
+                        <tr>
+                            <td>Parallel GC</td>
+                            <td>Многопоточный</td>
+                            <td>По умолчанию в Java 8</td>
+                        </tr>
+                        <tr>
+                            <td>G1 GC</td>
+                            <td>Низкие паузы</td>
+                            <td>Большие heap'ы</td>
+                        </tr>
+                        <tr>
+                            <td>ZGC/Shenandoah</td>
+                            <td>Сверхнизкие паузы</td>
+                            <td>Критичные к latency системы</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <details>
+        <summary><span class="emoji">🔄</span>Циклы и итерации <span class="tag">Loops</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>while vs for vs forEach - Производительность</summary>
+                <div class="content">
+                    <div class="definition">Сравнение производительности:</div>
+                    <table class="performance-table">
+                        <tr>
+                            <th>Тип цикла</th>
+                            <th>Производительность</th>
+                            <th>Когда использовать</th>
+                            <th>Пример</th>
+                        </tr>
+                        <tr>
+                            <td><span class="code">for</span> классический</td>
+                            <td><span class="highlight">⭐⭐⭐⭐⭐</span></td>
+                            <td>Известное количество итераций, массивы</td>
+                            <td><span class="code">for(int i=0; i&lt;n; i++)</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code">while</span></td>
+                            <td><span class="highlight">⭐⭐⭐⭐⭐</span></td>
+                            <td>Условие может измениться внутри цикла</td>
+                            <td><span class="code">while(condition)</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code">for-each</span></td>
+                            <td><span class="warning">⭐⭐⭐⭐</span></td>
+                            <td>Читаемость кода, коллекции</td>
+                            <td><span class="code">for(Item item : list)</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code">Stream.forEach</span></td>
+                            <td><span class="warning">⭐⭐⭐</span></td>
+                            <td>Функциональное программирование</td>
+                            <td><span class="code">list.forEach(item -> {})</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code">Iterator</span></td>
+                            <td><span class="warning">⭐⭐⭐</span></td>
+                            <td>Безопасное удаление элементов</td>
+                            <td><span class="code">while(it.hasNext())</span></td>
+                        </tr>
+                    </table>
+                    
+                    <div class="definition">Почему forEach медленнее:</div>
+                    <ul>
+                        <li>Создается объект Iterator</li>
+                        <li>Дополнительные вызовы методов hasNext() и next()</li>
+                        <li>Автобоксинг для примитивных типов</li>
+                    </ul>
+                    
+                    <div class="code-block">// Сравнение циклов для массива
+int[] array = new int[1_000_000];
+
+// Самый быстрый - прямой доступ по индексу
+for (int i = 0; i < array.length; i++) {
+    process(array[i]);
+}
+
+// Быстрый и читаемый
+for (int value : array) {
+    process(value);
+}
+
+// Медленнее - создание stream
+Arrays.stream(array).forEach(this::process);</div>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <details>
+        <summary><span class="emoji">🗃️</span>Коллекции <span class="tag">Collections</span></summary>
+        <div class="content">
+            
+            <details class="nested">
+                <summary>List реализации</summary>
+                <div class="content">
+                    <table class="performance-table">
+                        <tr>
+                            <th>Операция</th>
+                            <th>ArrayList</th>
+                            <th>LinkedList</th>
+                            <th>Vector</th>
+                        </tr>
+                        <tr>
+                            <td>Доступ по индексу</td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="error">O(n)</span></td>
+                            <td><span class="highlight">O(1)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Вставка в начало</td>
+                            <td><span class="error">O(n)</span></td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="error">O(n)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Вставка в конец</td>
+                            <td><span class="highlight">O(1)*</span></td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="highlight">O(1)*</span></td>
+                        </tr>
+                        <tr>
+                            <td>Удаление по индексу</td>
+                            <td><span class="warning">O(n)</span></td>
+                            <td><span class="warning">O(n)</span></td>
+                            <td><span class="warning">O(n)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Потокобезопасность</td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="highlight">ДА</span></td>
+                        </tr>
+                    </table>
+                    
+                    <div class="definition">Когда использовать:</div>
+                    <ul>
+                        <li><span class="highlight">ArrayList:</span> Частый доступ по индексу, добавление в конец</li>
+                        <li><span class="highlight">LinkedList:</span> Частые вставки/удаления в начале/середине</li>
+                        <li><span class="error">Vector:</span> Устарел, используй Collections.synchronizedList() или ConcurrentLinkedQueue</li>
+                    </ul>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Set реализации</summary>
+                <div class="content">
+                    <table class="performance-table">
+                        <tr>
+                            <th>Характеристика</th>
+                            <th>HashSet</th>
+                            <th>LinkedHashSet</th>
+                            <th>TreeSet</th>
+                        </tr>
+                        <tr>
+                            <td>Основа</td>
+                            <td>HashMap</td>
+                            <td>LinkedHashMap</td>
+                            <td>TreeMap (Red-Black Tree)</td>
+                        </tr>
+                        <tr>
+                            <td>Добавление/Поиск</td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="warning">O(log n)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Порядок элементов</td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="highlight">Вставки</span></td>
+                            <td><span class="highlight">Сортированный</span></td>
+                        </tr>
+                        <tr>
+                            <td>Null значения</td>
+                            <td><span class="highlight">1 null</span></td>
+                            <td><span class="highlight">1 null</span></td>
+                            <td><span class="error">НЕТ</span></td>
+                        </tr>
+                        <tr>
+                            <td>Требования к элементам</td>
+                            <td>hashCode() + equals()</td>
+                            <td>hashCode() + equals()</td>
+                            <td>Comparable или Comparator</td>
+                        </tr>
+                    </table>
+                </div>
+            </details>
+            
+            <details class="nested">
+                <summary>Map реализации</summary>
+                <div class="content">
+                    <table class="performance-table">
+                        <tr>
+                            <th>Характеристика</th>
+                            <th>HashMap</th>
+                            <th>LinkedHashMap</th>
+                            <th>TreeMap</th>
+                            <th>ConcurrentHashMap</th>
+                        </tr>
+                        <tr>
+                            <td>Поиск/Вставка</td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="highlight">O(1)</span></td>
+                            <td><span class="warning">O(log n)</span></td>
+                            <td><span class="highlight">O(1)</span></td>
+                        </tr>
+                        <tr>
+                            <td>Порядок ключей</td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="highlight">Вставки/Доступа</span></td>
+                            <td><span class="highlight">Сортированный</span></td>
+                            <td><span class="error">НЕТ</span></td>
+                        </tr>
+                        <tr>
+                            <td>Null ключи/значения</td>
+                            <td><span class="highlight">1 null ключ</span></td>
+                            <td><span class="highlight">1 null ключ</span></td>
+                            <td><span class="error">НЕТ null ключей</span></td>
+                            <td><span class="error">НЕТ null</span></td>
+                        </tr>
+                        <tr>
+                            <td>Потокобезопасность</td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="error">НЕТ</span></td>
+                            <td><span class="highlight">ДА</span></td>
+                        </tr>
+                    </table>
+                    
+                    <div class="definition">Java 8+ улучшения HashMap:</div>
+                    <ul>
+                        <li><span class="highlight">Балансировка:</span> При коллизиях переход на Red-Black дерево (8+ элементов в bucket)</li>
+                        <li><span class="highlight">Методы:</span> computeIfAbsent(), merge(), putIfAbsent()</li>
+                        <li><span class="highlight">Стриминг:</span> forEach(), replaceAll()</li>
+                    </ul>
+                </div>
+            </details>
+            
+        </div>
+    </details>
+    
+    <div class="footer">
+        <p>
+            <strong>📚 Interview Cheatsheets</strong> | 
+            <a href="https://github.com/yourusername/interview-cheatsheets" target="_blank">GitHub Repository</a> | 
+            <a href="https://github.com/yourusername/interview-cheatsheets/issues" target="_blank">Предложить улучшение</a>
+        </p>
+        <p style="margin-top: 10px; color: var(--text-secondary);">
+            Сделано с ❤️ для сообщества разработчиков. Версия 1.0
+        </p>
+    </div>
+    
+    <script>
+        // Управление разворачиванием/сворачиванием
+        function expandAll() {
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = true;
+            });
+        }
+        
+        function collapseAll() {
+            document.querySelectorAll('details').forEach(detail => {
+                detail.open = false;
+            });
+        }
+        
+        // Печать страницы
+        function printPage() {
+            // Временно разворачиваем все для печати
+            const wasOpen = [];
+            const details = document.querySelectorAll('details');
+            
+            details.forEach((detail, index) => {
+                wasOpen[index] = detail.open;
+                detail.open = true;
+            });
+            
+            window.print();
+            
+            // Возвращаем исходное состояние
+            details.forEach((detail, index) => {
+                detail.open = wasOpen[index];
+            });
+        }
+        
+        // Переключение темы (light/dark)
+        function toggleTheme() {
+            const root = document.documentElement;
+            const isDark = root.style.getPropertyValue('--bg-primary') !== '#ffffff';
+            
+            if (isDark) {
+                // Светлая тема
+                root.style.setProperty('--bg-primary', '#ffffff');
+                root.style.setProperty('--bg-secondary', '#f5f5f5');
+                root.style.setProperty('--bg-tertiary', '#e0e0e0');
+                root.style.setProperty('--bg-hover', '#d0d0d0');
+                root.style.setProperty('--text-primary', '#2c2c2c');
+                root.style.setProperty('--text-secondary', '#4a4a4a');
+                root.style.setProperty('--border-color', '#cccccc');
+                root.style.setProperty('--border-hover', '#999999');
+            } else {
+                // Темная тема (по умолчанию)
+                root.style.setProperty('--bg-primary', '#1a1a1a');
+                root.style.setProperty('--bg-secondary', '#2d2d2d');
+                root.style.setProperty('--bg-tertiary', '#3d3d3d');
+                root.style.setProperty('--bg-hover', '#4d4d4d');
+                root.style.setProperty('--text-primary', '#e0e0e0');
+                root.style.setProperty('--text-secondary', '#b0b0b0');
+                root.style.setProperty('--border-color', '#333');
+                root.style.setProperty('--border-hover', '#555');
+            }
+        }
+        
+        // Горячие клавиши
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey) {
+                switch(e.key) {
+                    case 'o': // Ctrl+O - развернуть все
+                        e.preventDefault();
+                        expandAll();
+                        break;
+                    case 'p': // Ctrl+P уже работает нативно для печати
+                        break;
+                    case 'm': // Ctrl+M - свернуть все
+                        e.preventDefault();
+                        collapseAll();
+                        break;
+                }
+            }
+        });
+        
+        // Сохранение состояния разделов в localStorage
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('details').forEach((detail, index) => {
+                state[index] = detail.open;
+            });
+            localStorage.setItem('cheatsheet-state', JSON.stringify(state));
+        }
+        
+        function loadState() {
+            const state = localStorage.getItem('cheatsheet-state');
+            if (state) {
+                const parsed = JSON.parse(state);
+                document.querySelectorAll('details').forEach((detail, index) => {
+                    if (parsed[index] !== undefined) {
+                        detail.open = parsed[index];
+                    }
+                });
+            }
+        }
+        
+        // Автосохранение состояния при изменении
+        document.addEventListener('toggle', saveState);
+        
+        // Загрузка состояния при загрузке страницы
+        document.addEventListener('DOMContentLoaded', loadState);
+        
+        // Подсчет статистики использования
+        let clickCount = parseInt(localStorage.getItem('cheatsheet-clicks') || '0');
+        
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'SUMMARY') {
+                clickCount++;
+                localStorage.setItem('cheatsheet-clicks', clickCount.toString());
+            }
+        });
+        
+        // Показать статистику в консоли для разработчиков
+        console.log(`%c📊 Статистика использования шпаргалки: ${clickCount} кликов`, 
+                   'color: #4CAF50; font-size: 14px; font-weight: bold;');
+        console.log('%c💡 Горячие клавиши: Ctrl+O (развернуть все), Ctrl+M (свернуть все)', 
+                   'color: #2196F3; font-size: 12px;');
+    </script>
+</body>
+</html>
