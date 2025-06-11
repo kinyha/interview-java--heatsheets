@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Интерактивная шпаргалка по TECHNOLOGY_NAME для подготовки к техническим интервью">
-    <meta name="keywords" content="TECHNOLOGY_NAME, interview, собеседование, шпаргалка, программирование">
+    <meta name="description" content="Интерактивная шпаргалка по Java для подготовки к техническим интервью">
+    <meta name="keywords" content="Java, interview, собеседование, шпаргалка, программирование">
     <meta name="author" content="Interview Cheatsheets">
     
-    <title>EMOJI TECHNOLOGY_NAME Interview Шпаргалка</title>
+    <title>☕ Java Interview Шпаргалка</title>
     
     <style>
         :root {
@@ -104,6 +104,72 @@
         .btn-primary:hover {
             background: var(--secondary-color);
             border-color: var(--secondary-color);
+        }
+        
+        /* Лоадер для модулей */
+        .loader {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+        
+        .loader::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border: 3px solid var(--primary-color);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Навигация по модулям */
+        .module-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .module-nav button {
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: all 0.3s ease;
+        }
+        
+        .module-nav button:hover,
+        .module-nav button.active {
+            background: var(--primary-color);
+            color: var(--bg-primary);
+            border-color: var(--primary-color);
+        }
+        
+        /* Контейнер для модулей */
+        #modules-container {
+            min-height: 400px;
+        }
+        
+        .module-section {
+            margin-bottom: 30px;
+        }
+        
+        .module-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
         }
         
         details {
@@ -345,7 +411,7 @@
 </head>
 <body>
     <div class="header">
-        <h1>EMOJI TECHNOLOGY_NAME Interview Шпаргалка</h1>
+        <h1>☕ Java Interview Шпаргалка</h1>
         <p>Быстрая подготовка к техническому собеседованию</p>
     </div>
     
@@ -356,190 +422,192 @@
         <button class="btn" onclick="toggleTheme()">🌓 Тема</button>
     </div>
     
-    <!-- ========== РАЗДЕЛ 1: ЗАМЕНИ НА СВОИ ТЕМЫ ========== -->
-    <details>
-        <summary><span class="emoji">🏗️</span>Основные концепции <span class="tag">Core</span></summary>
-        <div class="content">
-            
-            <details class="nested">
-                <summary>Концепция 1</summary>
-                <div class="content">
-                    <div class="definition">Определение:</div>
-                    Краткое описание концепции...<br><br>
-                    
-                    <div class="definition">Ключевые особенности:</div>
-                    <ul>
-                        <li>Особенность 1</li>
-                        <li>Особенность 2</li>
-                        <li>Особенность 3</li>
-                    </ul>
-                    
-                    <div class="definition">Пример кода:</div>
-                    <div class="code-block">// Пример кода здесь
-function example() {
-    return "Hello, World!";
-}</div>
-                    
-                    <div class="definition">Важно помнить:</div>
-                    <ul>
-                        <li><span class="highlight">Плюс:</span> Преимущество</li>
-                        <li><span class="warning">Внимание:</span> На что обратить внимание</li>
-                        <li><span class="error">Минус:</span> Недостаток или подводный камень</li>
-                    </ul>
-                </div>
-            </details>
-            
-            <details class="nested">
-                <summary>Концепция 2</summary>
-                <div class="content">
-                    <!-- Аналогично заполни содержимое -->
-                    <div class="definition">Определение:</div>
-                    Описание второй концепции...
-                </div>
-            </details>
-            
-        </div>
-    </details>
+    <!-- Навигация по модулям -->
+    <div class="module-nav" id="module-nav">
+        <!-- Кнопки модулей будут добавлены динамически -->
+    </div>
     
-    <!-- ========== РАЗДЕЛ 2: СРАВНЕНИЯ И ТАБЛИЦЫ ========== -->
-    <details>
-        <summary><span class="emoji">⚖️</span>Сравнения <span class="tag">Comparison</span></summary>
-        <div class="content">
-            
-            <details class="nested">
-                <summary>Технология A vs Технология B</summary>
-                <div class="content">
-                    <table class="performance-table">
-                        <tr>
-                            <th>Критерий</th>
-                            <th>Технология A</th>
-                            <th>Технология B</th>
-                        </tr>
-                        <tr>
-                            <td>Производительность</td>
-                            <td><span class="highlight">Высокая</span></td>
-                            <td><span class="warning">Средняя</span></td>
-                        </tr>
-                        <tr>
-                            <td>Сложность</td>
-                            <td><span class="error">Сложная</span></td>
-                            <td><span class="highlight">Простая</span></td>
-                        </tr>
-                        <tr>
-                            <td>Использование</td>
-                            <td>Для больших проектов</td>
-                            <td>Для простых задач</td>
-                        </tr>
-                    </table>
-                    
-                    <div class="definition">Когда использовать:</div>
-                    <ul>
-                        <li><span class="highlight">Технология A:</span> Когда нужна высокая производительность</li>
-                        <li><span class="highlight">Технология B:</span> Когда важна простота разработки</li>
-                    </ul>
-                </div>
-            </details>
-            
-        </div>
-    </details>
-    
-    <!-- ========== РАЗДЕЛ 3: ЛУЧШИЕ ПРАКТИКИ ========== -->
-    <details>
-        <summary><span class="emoji">✅</span>Лучшие практики <span class="tag">Best Practices</span></summary>
-        <div class="content">
-            
-            <details class="nested">
-                <summary>Общие рекомендации</summary>
-                <div class="content">
-                    <div class="definition">Do (Делай):</div>
-                    <ul>
-                        <li><span class="highlight">✓</span> Используй осмысленные названия</li>
-                        <li><span class="highlight">✓</span> Пиши тесты</li>
-                        <li><span class="highlight">✓</span> Документируй код</li>
-                    </ul>
-                    
-                    <div class="definition">Don't (Не делай):</div>
-                    <ul>
-                        <li><span class="error">✗</span> Не игнорируй ошибки</li>
-                        <li><span class="error">✗</span> Не копируй код без понимания</li>
-                        <li><span class="error">✗</span> Не забывай про безопасность</li>
-                    </ul>
-                </div>
-            </details>
-            
-        </div>
-    </details>
-    
-    <!-- ========== РАЗДЕЛ 4: ЧАСТЫЕ ВОПРОСЫ НА ИНТЕРВЬЮ ========== -->
-    <details>
-        <summary><span class="emoji">❓</span>Частые вопросы на интервью <span class="tag">Interview</span></summary>
-        <div class="content">
-            
-            <details class="nested">
-                <summary>Вопрос: Что такое [основная концепция]?</summary>
-                <div class="content">
-                    <div class="definition">Краткий ответ:</div>
-                    Основная концепция - это...<br><br>
-                    
-                    <div class="definition">Развернутый ответ:</div>
-                    Более детальное объяснение с примерами...
-                    
-                    <div class="code-block">// Пример для демонстрации
-console.log("Пример кода для собеседования");</div>
-                    
-                    <div class="definition">Возможные дополнительные вопросы:</div>
-                    <ul>
-                        <li>Каковы преимущества этого подхода?</li>
-                        <li>Когда лучше не использовать эту технологию?</li>
-                        <li>Как бы вы объяснили это junior разработчику?</li>
-                    </ul>
-                </div>
-            </details>
-            
-            <details class="nested">
-                <summary>Вопрос: В чем разница между X и Y?</summary>
-                <div class="content">
-                    <div class="definition">Основные различия:</div>
-                    <ul>
-                        <li><strong>X:</strong> Характеристика X</li>
-                        <li><strong>Y:</strong> Характеристика Y</li>
-                    </ul>
-                    
-                    <div class="definition">Практический пример:</div>
-                    <div class="code-block">// Пример использования X
-const exampleX = new X();
-
-// Пример использования Y  
-const exampleY = new Y();</div>
-                </div>
-            </details>
-            
-        </div>
-    </details>
+    <!-- Контейнер для загруженных модулей -->
+    <div id="modules-container">
+        <div class="loader">Загрузка модулей...</div>
+    </div>
     
     <div class="footer">
         <p>
             <strong>📚 Interview Cheatsheets</strong> | 
-            <a href="https://github.com/yourusername/interview-cheatsheets" target="_blank">GitHub Repository</a> | 
-            <a href="https://github.com/yourusername/interview-cheatsheets/issues" target="_blank">Предложить улучшение</a>
+            <a href="https://github.com/kinyha/interview-cheatsheets" target="_blank">GitHub Repository</a> | 
+            <a href="https://github.com/kinyha/interview-cheatsheets/issues" target="_blank">Предложить улучшение</a>
         </p>
         <p style="margin-top: 10px; color: var(--text-secondary);">
-            Сделано с ❤️ для сообщества разработчиков. Версия 1.0
+            Сделано с ❤️ для сообщества разработчиков. Версия 2.0 (модульная)
         </p>
     </div>
     
     <script>
+        // Конфигурация модулей
+        const MODULE_CONFIG = [
+            { id: 'java-core', name: '☕ Java Core', group: 'core' },
+            { id: 'oop', name: '🏗️ ООП', group: 'core' },
+            { id: 'collections', name: '📦 Коллекции', group: 'core' },
+            { id: 'java8', name: '🚀 Java 8+', group: 'core' },
+            { id: 'concurrency', name: '🧵 Многопоточность', group: 'core' },
+            { id: 'spring', name: '🌱 Spring', group: 'enterprise' },
+            { id: 'database', name: '🗄️ Базы данных', group: 'enterprise' },
+            { id: 'web', name: '🌐 Web', group: 'enterprise' },
+            { id: 'patterns', name: '📐 Паттерны', group: 'tools' },
+            { id: 'testing', name: '🧪 Тестирование', group: 'tools' }
+        ];
+        
+        // Загруженные модули
+        const loadedModules = {};
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            createModuleNavigation();
+            loadInitialModules();
+        });
+        
+        // Создание навигации по модулям
+        function createModuleNavigation() {
+            const nav = document.getElementById('module-nav');
+            
+            MODULE_CONFIG.forEach(module => {
+                const btn = document.createElement('button');
+                btn.textContent = module.name;
+                btn.onclick = () => toggleModule(module.id);
+                btn.setAttribute('data-module', module.id);
+                nav.appendChild(btn);
+            });
+        }
+        
+        // Загрузка начальных модулей
+        async function loadInitialModules() {
+            const container = document.getElementById('modules-container');
+            container.innerHTML = '';
+            
+            // Загружаем первые 3 модуля по умолчанию
+            const initialModules = ['java-core', 'oop', 'collections'];
+            
+            for (const moduleId of initialModules) {
+                await loadModule(moduleId);
+            }
+        }
+        
+        // Переключение модуля
+        async function toggleModule(moduleId) {
+            const btn = document.querySelector(`[data-module="${moduleId}"]`);
+            
+            if (btn.classList.contains('active')) {
+                // Удаляем модуль
+                unloadModule(moduleId);
+                btn.classList.remove('active');
+            } else {
+                // Загружаем модуль
+                await loadModule(moduleId);
+                btn.classList.add('active');
+            }
+        }
+        
+        // Загрузка модуля
+        async function loadModule(moduleId) {
+            if (loadedModules[moduleId]) return;
+            
+            try {
+                // Загружаем модуль
+                const module = await import(`./modules/${moduleId}.js`);
+                
+                // Создаем секцию для модуля
+                const section = document.createElement('div');
+                section.className = 'module-section';
+                section.id = `module-${moduleId}`;
+                section.innerHTML = module.default.content;
+                
+                // Добавляем в контейнер
+                const container = document.getElementById('modules-container');
+                container.appendChild(section);
+                
+                // Отмечаем как загруженный
+                loadedModules[moduleId] = true;
+                
+                // Активируем кнопку
+                const btn = document.querySelector(`[data-module="${moduleId}"]`);
+                if (btn) btn.classList.add('active');
+                
+                // Восстанавливаем состояние разделов
+                loadModuleState(moduleId);
+                
+            } catch (error) {
+                console.error(`Ошибка загрузки модуля ${moduleId}:`, error);
+                // Показываем заглушку для демо
+                showDemoModule(moduleId);
+            }
+        }
+        
+        // Выгрузка модуля
+        function unloadModule(moduleId) {
+            const section = document.getElementById(`module-${moduleId}`);
+            if (section) {
+                saveModuleState(moduleId);
+                section.remove();
+                delete loadedModules[moduleId];
+            }
+        }
+        
+        // Заглушка для демонстрации
+        function showDemoModule(moduleId) {
+            const section = document.createElement('div');
+            section.className = 'module-section';
+            section.id = `module-${moduleId}`;
+            
+            const moduleInfo = MODULE_CONFIG.find(m => m.id === moduleId);
+            
+            section.innerHTML = `
+                <h2>${moduleInfo.name}</h2>
+                <details>
+                    <summary><span class="emoji">📄</span>Модуль в разработке</summary>
+                    <div class="content">
+                        <p>Модуль <strong>${moduleInfo.name}</strong> находится в разработке.</p>
+                        <p>Создайте файл <code>modules/${moduleId}.js</code> со структурой:</p>
+                        <div class="code-block">
+export default {
+    title: "${moduleInfo.name}",
+    content: \`
+        &lt;h2&gt;${moduleInfo.name}&lt;/h2&gt;
+        &lt;details&gt;
+            &lt;summary&gt;Тема 1&lt;/summary&gt;
+            &lt;div class="content"&gt;
+                Содержимое темы...
+            &lt;/div&gt;
+        &lt;/details&gt;
+    \`
+};
+                        </div>
+                    </div>
+                </details>
+            `;
+            
+            const container = document.getElementById('modules-container');
+            container.appendChild(section);
+            
+            loadedModules[moduleId] = true;
+            
+            const btn = document.querySelector(`[data-module="${moduleId}"]`);
+            if (btn) btn.classList.add('active');
+        }
+        
         // Управление разворачиванием/сворачиванием
         function expandAll() {
             document.querySelectorAll('details').forEach(detail => {
                 detail.open = true;
             });
+            saveAllModulesState();
         }
         
         function collapseAll() {
             document.querySelectorAll('details').forEach(detail => {
                 detail.open = false;
             });
+            saveAllModulesState();
         }
         
         // Печать страницы
@@ -559,7 +627,7 @@ const exampleY = new Y();</div>
             });
         }
         
-        // Переключение темы (light/dark)
+        // Переключение темы
         function toggleTheme() {
             const root = document.documentElement;
             const isDark = root.style.getPropertyValue('--bg-primary') !== '#ffffff';
@@ -585,7 +653,62 @@ const exampleY = new Y();</div>
                 root.style.setProperty('--border-color', '#333');
                 root.style.setProperty('--border-hover', '#555');
             }
+            
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
         }
+        
+        // Сохранение состояния модуля
+        function saveModuleState(moduleId) {
+            const section = document.getElementById(`module-${moduleId}`);
+            if (!section) return;
+            
+            const state = {};
+            section.querySelectorAll('details').forEach((detail, index) => {
+                state[index] = detail.open;
+            });
+            
+            localStorage.setItem(`module-state-${moduleId}`, JSON.stringify(state));
+        }
+        
+        // Загрузка состояния модуля
+        function loadModuleState(moduleId) {
+            const section = document.getElementById(`module-${moduleId}`);
+            if (!section) return;
+            
+            const state = localStorage.getItem(`module-state-${moduleId}`);
+            if (state) {
+                const parsed = JSON.parse(state);
+                section.querySelectorAll('details').forEach((detail, index) => {
+                    if (parsed[index] !== undefined) {
+                        detail.open = parsed[index];
+                    }
+                });
+            }
+        }
+        
+        // Сохранение состояния всех модулей
+        function saveAllModulesState() {
+            Object.keys(loadedModules).forEach(moduleId => {
+                saveModuleState(moduleId);
+            });
+        }
+        
+        // Автосохранение при изменении
+        document.addEventListener('toggle', (e) => {
+            const section = e.target.closest('.module-section');
+            if (section) {
+                const moduleId = section.id.replace('module-', '');
+                saveModuleState(moduleId);
+            }
+        });
+        
+        // Загрузка темы при старте
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                toggleTheme();
+            }
+        });
         
         // Горячие клавиши
         document.addEventListener('keydown', function(e) {
@@ -603,41 +726,8 @@ const exampleY = new Y();</div>
             }
         });
         
-        // Сохранение состояния разделов
-        function saveState() {
-            const state = {};
-            document.querySelectorAll('details').forEach((detail, index) => {
-                state[index] = detail.open;
-            });
-            localStorage.setItem('TECHNOLOGY_NAME-cheatsheet-state', JSON.stringify(state));
-        }
-        
-        function loadState() {
-            const state = localStorage.getItem('TECHNOLOGY_NAME-cheatsheet-state');
-            if (state) {
-                const parsed = JSON.parse(state);
-                document.querySelectorAll('details').forEach((detail, index) => {
-                    if (parsed[index] !== undefined) {
-                        detail.open = parsed[index];
-                    }
-                });
-            }
-        }
-        
-        document.addEventListener('toggle', saveState);
-        document.addEventListener('DOMContentLoaded', loadState);
-        
         // Статистика
-        let clickCount = parseInt(localStorage.getItem('TECHNOLOGY_NAME-cheatsheet-clicks') || '0');
-        
-        document.addEventListener('click', function(e) {
-            if (e.target.tagName === 'SUMMARY') {
-                clickCount++;
-                localStorage.setItem('TECHNOLOGY_NAME-cheatsheet-clicks', clickCount.toString());
-            }
-        });
-        
-        console.log(`%c📊 Статистика использования шпаргалки по TECHNOLOGY_NAME: ${clickCount} кликов`, 
+        console.log('%c📊 Java Interview Cheatsheet v2.0 (модульная версия)', 
                    'color: #4CAF50; font-size: 14px; font-weight: bold;');
         console.log('%c💡 Горячие клавиши: Ctrl+O (развернуть все), Ctrl+M (свернуть все)', 
                    'color: #2196F3; font-size: 12px;');
