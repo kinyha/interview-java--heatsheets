@@ -41,7 +41,7 @@ open java.html
 ```
 
 ### Вариант 2: Использовать онлайн
-Перейди по ссылке: [Java Cheatsheet](https://github.com/kinyha/interview-java-cheatsheets/java.html)
+Перейди по ссылке: [Java Cheatsheet](https://kinyha.github.io/interview-java-cheatsheets/java.html)
 
 ### Вариант 3: Сохранить как закладку
 1. Открой нужную шпаргалку
