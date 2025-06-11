@@ -16,7 +16,7 @@
 
 | Технология | Статус | Демо | Скачать |
 |------------|--------|------|---------|
-| ☕ **Java** | ✅ Готово | [Demo](https://yourusername.github.io/interview-cheatsheets/java.html) | [Download](./java.html) |
+| ☕ **Java** | ✅ Готово | [Demo](https://kinyha.github.io/interview-java-cheatsheets/java.html) | [Download](./java.html) |
 | 🟢 **Spring** | 🚧 В разработке | - | - |
 | 🗄️ **SQL** | 📝 Планируется | - | - |
 | 🐳 **Docker** | 📝 Планируется | - | - |
@@ -34,7 +34,7 @@
 ### Вариант 1: Скачать и открыть
 ```bash
 # Клонируй репозиторий
-git clone https://github.com/yourusername/interview-cheatsheets.git
+git clone https://github.com/kinyha/interview-java-cheatsheets.git
 
 # Открой нужную шпаргалку в браузере
 open java.html
@@ -42,7 +42,7 @@ open java.html
 ```
 
 ### Вариант 2: Использовать онлайн
-Перейди по ссылке: [Java Cheatsheet Demo](https://yourusername.github.io/interview-cheatsheets/java.html)
+Перейди по ссылке: [Java Cheatsheet Demo](https://github.com/kinyha/interview-java-cheatsheets/java.html)
 
 ### Вариант 3: Сохранить как закладку
 1. Открой нужную шпаргалку
@@ -172,9 +172,9 @@ MIT License - используй как хочешь, но не забудь у�
 
 ## 📞 Контакты
 
-- **GitHub Issues:** [Создать issue](https://github.com/yourusername/interview-cheatsheets/issues)
-- **Email:** your.email@example.com
-- **Telegram:** @yourusername
+- **GitHub Issues:** [Создать issue](https://github.com/kinyha/interview-java-cheatsheets/issues)
+- **Email:** kinyhaha@gmail.com
+- **Telegram:** @kinyha
 
 ---
 
